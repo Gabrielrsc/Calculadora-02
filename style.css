@@ -117,7 +117,7 @@ body * {
 
 /* Responsivo */
 
-@media (min-width: 412px) {
+@media (max-width: 412px) {
   #calculadora {
     width: 100vw;
     height: 100vh;
