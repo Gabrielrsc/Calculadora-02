@@ -10,6 +10,11 @@
   --text-color: #ebebeb;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   overflow: hidden;
   width: 100vw;
@@ -108,4 +113,25 @@ body * {
 
 #teclado .btn-azul-igual {
   background-color: #64a7ec;
+}
+
+/* Responsivo */
+
+@media (min-width: 412px) {
+  #calculadora {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+
+  #teclado {
+    margin-top: 60px;
+    margin-inline: auto;
+  }
+  #teclado button {
+    margin-inline: auto;
+    width: 68px;
+    height: 68px;
+  }
 }
