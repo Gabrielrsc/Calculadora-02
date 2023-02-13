@@ -1,0 +1,111 @@
+:root {
+  --bg-color: #ebebeb;
+  --btn-color: #ebebeb;
+  --text-color: #2d2a37;
+}
+
+.tema-escuro {
+  --bg-color: #2d2a37;
+  --btn-color: #2d2a37;
+  --text-color: #ebebeb;
+}
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #72a5f2 0%, #9090ed);
+  display: grid;
+  place-content: center;
+}
+body * {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+#calculadora {
+  width: 300px;
+  height: 600px;
+  background: var(--bg-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 188px 52px rgba(0, 0, 0, 0.01), 0px 120px 48px rgba(0, 0, 0, 0.04),
+    0px 68px 41px rgba(0, 0, 0, 0.15), 0px 30px 30px rgba(0, 0, 0, 0.26),
+    0px 8px 17px rgba(0, 0, 0, 0.29), inset 0px 6px 8px rgba(255, 255, 255, 0.1),
+    inset 0px -4px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 48px;
+}
+
+#tema {
+  margin-top: 60px;
+  padding-inline: 31px;
+}
+
+#tema button {
+  background-color: transparent;
+  border: 0;
+}
+#display {
+  margin-top: 44px;
+  padding-inline: 31px;
+  text-align: right;
+}
+#operacao {
+  font-size: 16px;
+  color: #9a9b9b;
+}
+
+#resultado {
+  margin-top: 10px;
+  font-size: 22px;
+  color: var(--text-color);
+}
+.opcao {
+  margin-top: 31px;
+  margin-inline: 31px;
+  text-align: right;
+}
+
+#teclado {
+  margin-top: 26px;
+  margin-inline: 31px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  /* padding-bottom: 32px; */
+}
+
+#teclado button {
+  border: 0;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    var(--btn-color);
+  box-shadow: 0px 11px 7px rgba(0, 0, 0, 0.01), 0px 7px 7px rgba(0, 0, 0, 0.04),
+    0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.26),
+    0px 0px 2px rgba(0, 0, 0, 0.29), inset 0px 2px 3px rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+
+  font-size: 18px;
+  line-height: 31px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#teclado .btn-vermelho {
+  color: #ff6d6d;
+}
+#teclado .btn-azul {
+  background-color: #25a2b4;
+  color: #ebebeb;
+}
+
+#teclado .btn-azul-igual {
+  background-color: #64a7ec;
+}
