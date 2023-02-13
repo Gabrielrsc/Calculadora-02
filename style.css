@@ -117,7 +117,7 @@ body * {
 
 /* Responsivo */
 
-@media (max-width: 412px) {
+@media (max-width: 414px) {
   #calculadora {
     width: 100vw;
     height: 100vh;
@@ -127,11 +127,26 @@ body * {
 
   #teclado {
     margin-top: 60px;
-    margin-inline: auto;
+    /* margin-inline: 20px; */
   }
   #teclado button {
     margin-inline: auto;
     width: 68px;
     height: 68px;
+  }
+
+  #operacao {
+    font-size: 22px;
+  }
+
+  #resultado {
+    font-size: 32px;
+  }
+  .opcao img {
+    width: 24px;
+  }
+
+  #tema img {
+    width: 24px;
   }
 }
