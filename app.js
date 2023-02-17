@@ -10,45 +10,85 @@ function MudarTema() {
   }
 }
 
-const numeroBotoes = document.querySelectorAll('[data-numero]')
-const operadorBotao = document.querySelectorAll('[data-operador]')
-const igualBotao = document.querySelector('[data-igual]')
-const deleteBotao = document.querySelector('[data-delete]')
-const limparBotao = document.querySelector('[data-limpar]')
-const previuOperacaoTexto = document.querySelector('[data-previu-operacao]')
-const previuResultadoTexto = document.querySelector('[data-previu-resultado]')
+const previuOperacaoText = document.querySelector('#operacao')
+const previuResultadoText = document.querySelector('#resultado')
+const botoes = document.querySelectorAll('#teclado button')
 
 class Calculadora {
-  constructor(previuOperacaoTexto, previuResultadoTexto) {
-    this.previuOperacaoTexto = previuOperacaoTexto
-    this.previuResultadoTexto = previuResultadoTexto
+  constructor(previuOperacaoText, previuResultadoText) {
+    this.previuOperacaoText = previuOperacaoText
+    this.previuResultadoText = previuResultadoText
+    this.OperacaoText = ''
   }
 
-  imprimirNumero(numero) {
-    this.previuResultado = `${this.previuResultado}${numero.toString()}`
+  addDigito(digito) {
+    //CHegar se operação ja tem ,
+    if (digito === ',' && this.previuResultadoText.innerText.includes(',')) {
+      return
+    }
+    this.OperacaoText = digito
+    this.atualizarTela()
   }
 
-  limpar() {
-    this.previuResultado = ''
-    this.preivuOperacao = ''
-    this.operacao = undefined
+  // Processando metodo calculadora
+  processoOperacao(operacao) {
+    let operacaoValor
+    const previu = +this.previuOperacaoText.innerText.split(" ")[0]
+    const resultado = +this.previuResultadoText.innerText
+
+    switch (operacao) {
+      case '+':
+        operacaoValor = previu + resultado
+        this.atualizarTela(operacaoValor, operacao, resultado, previu)
+        break
+      case '-':
+        operacaoValor = previu - resultado
+        this.atualizarTela(operacaoValor, operacao, resultado, previu)
+      case 'x':
+        operacaoValor = previu * resultado
+        this.atualizarTela(operacaoValor, operacao, resultado, previu)
+        break
+      case '/':
+        operacaoValor = previu / resultado
+        this.atualizarTela(operacaoValor, operacao, resultado, previu)
+        break
+        
+      default:
+        return
+    }
   }
 
-  atualizarDisplay() {
-    this.previuOperacaoTexto.innerText = this.preivuOperacao
-    this.previuResultadoTexto.innerText = this.previuResultado
+  atualizarTela(
+    operacaoValor = null,
+    operacao = null,
+    previu = null,
+    resultado = null
+  ) {
+    if (operacaoValor === null) {
+      this.previuResultadoText.innerText += this.OperacaoText
+    } else {
+      //Chegar se valor e 0
+      if (previu === 0) {
+        operacaoValor = resultado
+      }
+
+      //Addd valor para resultado
+      this.previuOperacaoText.innerText = `${operacaoValor} ${operacao}`
+      this.previuResultadoText.innerText = ''
+    }
   }
 }
-const calculadora = new Calculadora(previuOperacaoTexto, previuResultadoTexto)
 
-for (const numeroBotao of numeroBotoes) {
-  numeroBotao.addEventListener('clcik', () => {
-    calculadora.imprimirNumero(numeroBotao.innerText)
-    calculadora.atualizarDisplay()
+const calcular = new Calculadora(previuOperacaoText, previuResultadoText)
+
+botoes.forEach(btn => {
+  btn.addEventListener('click', e => {
+    const valor = e.target.innerText
+
+    if (+valor >= 0 || valor === ',') {
+      calcular.addDigito(valor)
+    } else {
+      calcular.processoOperacao(valor)
+    }
   })
-}
-
-limparBotao.addEventListener('click', () => {
-  calculadora.limpar()
-  calculadora.atualizarDisplay()
 })
